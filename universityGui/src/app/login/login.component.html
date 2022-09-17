@@ -1,0 +1,47 @@
+<!-- <div class="container">
+    <div class="card mt-5" style="align-items: center;">
+        <h1>Admin Login</h1>
+    </div> -->
+    <!-- student login form -->
+    <!-- <div class="card mt-5" style="padding: 20px;">
+        <form #loginForm = "ngForm" (ngSubmit)="login(loginForm.value)" >
+            <div class="mb-3">
+              <label for="userName" class="form-label">Username</label>
+              <input name = "userName" ngModel type="text" class="form-control" id="userName" >
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input name = "password" ngModel type="password" class="form-control" id="password">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+          </form>
+    </div>
+ </div> -->
+
+
+ <!-- student login form -->
+ <section class="vh-100" style="background-color: #508bfc;background-repeat: no-repeat, repeat;background-size: cover;background-image: url(https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg)">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+
+            <form class="card-body p-5 text-center" #loginForm = "ngForm" (ngSubmit)="login(loginForm.value)" >
+              <h3 class="mb-5">Admin login</h3>
+              <div class="mb-3">
+                <label for="userName" class="form-label">Username</label>
+                <input name = "userName" ngModel type="text" class="form-control" id="userName" >
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input name = "password" ngModel type="password" class="form-control" id="password">
+              </div>
+              <!-- <button type="submit" class="btn btn-primary w-100">Login</button> -->
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+              <hr class="my-4">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

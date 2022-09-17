@@ -1,0 +1,14 @@
+<div *ngIf="!loginSuccess; else other_content">
+  <app-login></app-login>
+</div>
+<ng-template #other_content>
+  <nav class="navbar bg-light">
+    <form class="container-fluid justify-content-start">
+      <button routerLink="student-dashboard" class="btn btn-outline-success me-2" type="button">Student
+        Dashboard</button>
+        <button routerLink="admin" class="btn btn-outline-success" type="button" (click)="setLougout()">Admin</button>
+      <button routerLink="admin-login" class="btn btn-outline-success" type="button" (click)="setLougout()">Admin Logout</button>
+    </form>
+  </nav>
+  <router-outlet></router-outlet>
+</ng-template>

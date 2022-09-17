@@ -1,0 +1,115 @@
+<!-- <p>student-dashboard works!</p> -->
+
+<div class="container">
+    <div class="card mt-5" style="align-items: center;">
+        <h1>Student Dashboard</h1>
+    </div>
+    <!-- student registration form -->
+    <div class="card mt-5" style="padding: 20px;">
+        <form #registerForm = "ngForm" (ngSubmit)="register(registerForm.value)">
+            <div class="mb-3">
+              <label for="id" class="form-label">Id</label>
+              <input #id (keyup)="searchById(id.value)" name = "id" ngModel type="number" class="form-control" id="id">
+            </div>
+
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input name = "name" ngModel type="text" class="form-control" id="name">
+            </div>
+            
+            <div class="mb-3">
+                <label for="gender" class="form-label">Gender</label>
+                <input name="gender" ngModel type="text" class="form-control" id="gender">
+            </div>
+            <div class="mb-3">
+              <label for="phoneNumber" class="form-label">Phone number</label>
+              <input name="phoneNumber" ngModel type="text" class="form-control" id="phoneNumber">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input name="email" ngModel type="text" class="form-control" id="email">
+        </div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+          </form>
+    </div>
+
+    <!-- Show Student info -->
+    <div class="card mt-5" style="padding: 20px;">
+        <!-- search here -->
+        <label for="gender" class="form-label">Search by</label>
+        <div  style = "width: 100px;display: inline-flex;">
+            <input #id1 (keyup)="searchById(id1.value)" type = "number" class="form-control" style="width: 150px;margin-right: 10px;" placeholder="id">
+            <input #name (keyup)="searchByName(name.value)"class="form-control" style="width: 150px;" placeholder="name">
+        </div>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Email</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor = "let student of students">
+                <!-- <th scope="row">1</th> -->
+                <td>{{student.id}}</td>
+                <td>{{student.name}}</td>
+                <td>{{student.gender}}</td>
+                <td>{{student.phoneNumber}}</td>
+                <td>{{student.email}}</td>
+                <td ><button type = "button" class="btn btn-primary" (click)="setStudent(student)" data-bs-target="#updateStudentModal"data-bs-toggle="modal" >Edit</button></td>
+                <td ><button type = "button" class="btn btn-danger" (click)="deleteStudent(student.id)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <!-- Update student -->
+
+    <div class="modal fade" id="updateStudentModal" tabindex="-1" aria-labelledby="updateStudentLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="updateStudentLabel">Update info</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #updateForm = "ngForm" (ngSubmit)="updateStudent(updateForm.value)">
+                    <div class="mb-3">
+                      <label  class="form-label">Id</label>
+                      <input name = "id" [ngModel] = "student.id" type="number" class="form-control"  >
+                    </div>
+        
+                    <div class="mb-3">
+                      <label class="form-label">Name</label>
+                      <input name = "name" [ngModel] = "student.name"  type="text" class="form-control" >
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label  class="form-label">Gender</label>
+                        <input name="gender" [ngModel] = "student.gender"  type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                      <label  class="form-label">Phone number</label>
+                      <input name="phoneNumber" [ngModel] = "student.phoneNumber"  type="text" class="form-control">
+                    </div>
+                  <div class="mb-3">
+                    <label  class="form-label">Email</label>
+                    <input name="email" [ngModel] = "student.email"  type="text" class="form-control">
+                </div>
+                    <button type="submit" class="btn btn-primary w-100">Update</button>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+
+
+

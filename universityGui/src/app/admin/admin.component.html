@@ -1,0 +1,83 @@
+<!-- <p>admin works!</p> -->
+
+
+<div class="container">
+    <div class="card mt-5" style="align-items: center;">
+        <h1>Admin Dashboard</h1>
+    </div>
+    <!-- student registration form -->
+    <div class="card mt-5" style="padding: 20px;">
+
+        <form #resisterAdminForm = "ngForm" (ngSubmit)="register(resisterAdminForm.value)">
+
+            <div class="mb-3">
+              <label for="userName" class="form-label">User name</label>
+              <input #userName (keyup)="searchByUserName(userName.value)" name = "userName" ngModel type="text" class="form-control" id="code">
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input name = "password" ngModel type="text" class="form-control" id="password">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+          </form>
+    </div>
+
+    <!-- Show Admin info -->
+    <div class="card mt-5" style="padding: 20px;">
+        <!-- search here -->
+        <label for="gender" class="form-label">Search by</label>
+        <div  style = "width: 100px;display: inline-flex;">
+            <input #userName1 (keyup)="searchByUserName(userName1.value)" type = "text" class="form-control" style="width: 150px;margin-right: 10px;" placeholder="username">
+        </div>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Username</th>
+                <th scope="col">password</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor = "let admin of admins">
+                <!-- <th scope="row">1</th> -->
+                <td>{{admin.userName}}</td>
+                <td>{{admin.password}}</td>
+                <td ><button type = "button" class="btn btn-primary" (click)="setAdmin(admin)" data-bs-target="#updateAdminModal"data-bs-toggle="modal" >Edit</button></td>
+                <td ><button type = "button" class="btn btn-danger" (click)="deleteAdmin(admin.userName)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+
+    <!-- Update student -->
+
+    <div class="modal fade" id="updateAdminModal" tabindex="-1" aria-labelledby="updateAdminLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="uupdateAdminLabel">Update info</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #updateForm = "ngForm" (ngSubmit)="updateAdmin(updateForm.value)">
+                    <div class="mb-3">
+                      <label  class="form-label">User name</label>
+                      <input name = "userName" [ngModel] = "admin.userName" type="text" class="form-control"  >
+                    </div>
+        
+                    <div class="mb-3">
+                      <label class="form-label">Password</label>
+                      <input name = "password" [ngModel] = "admin.password"  type="text" class="form-control" >
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Update</button>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

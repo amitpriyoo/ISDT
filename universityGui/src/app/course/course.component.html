@@ -1,0 +1,81 @@
+<p>course works!</p>
+<div class="container">
+    <div class="card mt-5" style="align-items: center;">
+        <h1>Admin Dashboard</h1>
+    </div>
+    <!-- student registration form -->
+    <div class="card mt-5" style="padding: 20px;">
+
+        <form #resisterCourseForm = "ngForm" (ngSubmit)="register(resisterCourseForm.value)">
+
+            <div class="mb-3">
+              <label for="course" class="form-label">Course code</label>
+              <input #code (keyup)="searchByCode(code.value)" name = "code" ngModel type="text" class="form-control" id="code">
+            </div>
+
+            <div class="mb-3">
+              <label for="name" class="form-label">Course Name</label>
+              <input name = "name" ngModel type="text" class="form-control" id="name">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+          </form>
+    </div>
+
+    <!-- Show Admin info -->
+    <div class="card mt-5" style="padding: 20px;">
+        <!-- search here -->
+        <label for="gender" class="form-label">Search by</label>
+        <div  style = "width: 100px;display: inline-flex;">
+            <input #code1 (keyup)="searchByCode(code1.value)" type = "text" class="form-control" style="width: 150px;margin-right: 10px;" placeholder="course code">
+        </div>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Course code</th>
+                <th scope="col">Course name</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor = "let course of courses">
+                <!-- <th scope="row">1</th> -->
+                <td>{{course.code}}</td>
+                <td>{{course.name}}</td>
+                <td ><button type = "button" class="btn btn-primary" (click)="setCourse(admin)" data-bs-target="#updateCourseModal"data-bs-toggle="modal" >Edit</button></td>
+                <td ><button type = "button" class="btn btn-danger" (click)="deleteCourse(admin.userName)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+
+    <!-- Update student -->
+
+    <div class="modal fade" id="updateCourseModal" tabindex="-1" aria-labelledby="updateCourseLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="uupdateCourseLabel">Update info</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #updateForm = "ngForm" (ngSubmit)="updateCourse(updateForm.value)">
+                    <div class="mb-3">
+                      <label  class="form-label">User name</label>
+                      <input name = "userName" [ngModel] = "admin.userName" type="text" class="form-control"  >
+                    </div>
+        
+                    <div class="mb-3">
+                      <label class="form-label">Password</label>
+                      <input name = "password" [ngModel] = "admin.password"  type="text" class="form-control" >
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Update</button>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
